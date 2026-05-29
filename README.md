@@ -12,7 +12,13 @@ built from scratch for Linux desktops.
 The first polished target is **Ubuntu (GNOME, X11)** with GTK 4. See
 [Linux compatibility](#linux-compatibility) for what works where.
 
-![popup screenshot](docs/popup.png)
+<table>
+<tr>
+<td align="center" width="33%"><img src="docs/popup.png" alt="Searchable clipboard history with text and image items"/><br/><sub><b>Searchable history</b> — text & images</sub></td>
+<td align="center" width="33%"><img src="docs/popup-alt-mode.png" alt="Alt mode switches badges to pin-toggle"/><br/><sub><b>Alt mode</b> — pin / unpin</sub></td>
+<td align="center" width="33%"><img src="docs/popup-empty.png" alt="Empty state"/><br/><sub><b>Empty state</b></sub></td>
+</tr>
+</table>
 
 > If Pastewisp feels useful, consider starring the repo — it helps other Linux
 > users discover the project.
