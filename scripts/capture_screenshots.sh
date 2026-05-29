@@ -92,8 +92,12 @@ shoot() {
 open_popup() { xdotool mousemove "$WARP_X" "$WARP_Y"; xdotool key ctrl+shift+v; sleep 1.2; }
 close_popup() { xdotool key Escape; sleep 0.5; }
 
-# ===== 1) normal + 2) alt-mode  (seeded history) =====
-"$PY" "$REPO_DIR/scripts/_seed_demo.py" >/dev/null
+# ===== 1) normal + 2) alt-mode  (seeded history, incl. one image item) =====
+PASTEWISP_SEED_IMAGE=1 "$PY" "$REPO_DIR/scripts/_seed_demo.py" >/dev/null
+# Neutralize the clipboard so the watcher doesn't inject a stray item on startup
+# (whitespace-only values are ignored), keeping the seeded list deterministic.
+printf ' ' | xclip -selection clipboard -i 2>/dev/null || true
+sleep 0.5
 setsid "$PY" -m pastewisp >"$DEMO_HOME/app.log" 2>&1 < /dev/null &
 APP_PID=$!
 sleep 4
