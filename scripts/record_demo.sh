@@ -29,8 +29,11 @@ mkdir -p "$XDG_DATA_HOME" "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME"
 # Capture geometry. The editor is MAXIMIZED to fill its monitor (the portrait
 # monitor at x=0, 1440 wide), so the record region — centred well inside it —
 # can never leak the desktop behind. Popup (580x500) is warped inside too.
-REC_X=150; REC_Y=95; REC_W=1150; REC_H=980
-WARP_X=430; WARP_Y=470
+REC_X=0; REC_Y=90; REC_W=1320; REC_H=1010
+WARP_X=380; WARP_Y=360
+# screenkey overlay bar — drawn inside the bottom of the capture region so the
+# keys being pressed (hotkey, search query, Enter) are visible in the GIF.
+SK_GEO="1180x74+90+980"
 OUT_MP4="$REPO_DIR/docs/_demo.mp4"
 OUT_GIF="$REPO_DIR/docs/demo.gif"
 
@@ -38,10 +41,12 @@ SERVICE_WAS_ACTIVE=0
 EDITOR_PID=""
 APP_PID=""
 FFMPEG_PID=""
+SK_PID=""
 
 cleanup() {
   set +e
   [ -n "$FFMPEG_PID" ] && kill "$FFMPEG_PID" 2>/dev/null
+  [ -n "$SK_PID" ] && kill "$SK_PID" 2>/dev/null
   [ -n "$APP_PID" ] && kill "$APP_PID" 2>/dev/null
   [ -n "$EDITOR_PID" ] && kill "$EDITOR_PID" 2>/dev/null
   # restore the user's service
@@ -130,7 +135,15 @@ echo "==> launching demo pastewisp"
 APP_PID=$!
 sleep 4
 
-# 5. Start recording.
+# 5. Start the keystroke overlay (screenkey), then record.
+echo "==> starting screenkey overlay"
+screenkey --no-systray -p fixed -g "$SK_GEO" \
+  -s large --timeout 1.6 --key-mode composed --mods-mode emacs \
+  --bg-color "#11121a" --font-color "#e6e6f0" --opacity 0.95 \
+  >/dev/null 2>&1 &
+SK_PID=$!
+sleep 1.5
+
 echo "==> recording"
 ffmpeg -y -hide_banner -loglevel error \
   -f x11grab -framerate 20 -video_size "${REC_W}x${REC_H}" \
