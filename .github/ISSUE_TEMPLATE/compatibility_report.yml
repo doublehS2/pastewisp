@@ -1,0 +1,62 @@
+name: Desktop compatibility report
+description: Report how Pastewisp behaves on your Linux desktop.
+labels: ["compatibility"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Clipboard and auto-paste behavior varies across desktops and display
+        servers. These reports help us document reality honestly.
+  - type: input
+    id: distro
+    attributes:
+      label: Distribution
+      placeholder: e.g. Ubuntu 24.04 LTS
+    validations:
+      required: true
+  - type: input
+    id: desktop
+    attributes:
+      label: Desktop environment
+      placeholder: e.g. GNOME 46, KDE Plasma 6
+    validations:
+      required: true
+  - type: dropdown
+    id: session
+    attributes:
+      label: X11 or Wayland?
+      options:
+        - X11
+        - Wayland
+        - Not sure
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Pastewisp version
+      description: Output of `pastewisp --version`.
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: Installation method
+      options:
+        - .deb package
+        - install.sh script
+        - From source
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what-works
+    attributes:
+      label: What works / what doesn't
+      description: Hotkey, popup, search, auto-paste, tray icon — what behaved how?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Notes / reproduction steps

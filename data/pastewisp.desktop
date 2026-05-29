@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Name=Pastewisp
+Name[ko]=Pastewisp
+GenericName=Clipboard Manager
+GenericName[ko]=클립보드 매니저
+Comment=Maccy-like clipboard manager for Ubuntu
+Comment[ko]=Ubuntu용 Maccy 스타일 클립보드 매니저
+Exec=pastewisp
+Icon=edit-paste
+Terminal=false
+Categories=Utility;
+StartupNotify=false
+X-GNOME-UsesNotifications=false

@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Test / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Project-local data (only committed sample if any)
+*.sqlite
+*.sqlite-*
+*.db
+
+# Local screenshots / temp
+/tmp_*
+/scratch_*
+
+# Plan / agent files (kept local)
+/.claude/
+
+# Internal docs kept local (spec + marketing drafts) — not for the public repo
+/pastewisp_requirements.md
+/LAUNCH.md

@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pastewisp"
+version = "0.1.0"
+description = "Maccy-style clipboard manager for Ubuntu (X11, GTK4)"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Pastewisp contributors" }]
+keywords = ["clipboard", "manager", "gtk4", "ubuntu", "linux", "x11", "maccy"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: X11 Applications :: GTK",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Desktop Environment",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "python-xlib>=0.33",
+    "Pillow>=10.0",
+    "tomli_w>=1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/doublehS2/pastewisp"
+Repository = "https://github.com/doublehS2/pastewisp"
+Issues = "https://github.com/doublehS2/pastewisp/issues"
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+pastewisp = "pastewisp.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+pastewisp = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -q"

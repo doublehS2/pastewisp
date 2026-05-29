@@ -1,0 +1,16 @@
+[Unit]
+Description=Pastewisp clipboard manager
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=@PYTHON@ -m pastewisp
+Restart=on-failure
+RestartSec=2
+# Forward X11-related variables (typically imported by the user session into
+# the systemd environment via `systemctl --user import-environment`).
+PassEnvironment=DISPLAY XAUTHORITY XDG_SESSION_TYPE DBUS_SESSION_BUS_ADDRESS
+
+[Install]
+WantedBy=graphical-session.target
